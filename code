@@ -1,0 +1,40 @@
+class binarynode:
+        def __init__(self,data,left=None,right=None):
+            self._data=data
+            self._left=left
+            self._right=right
+class binarysearchtree :
+    
+    def __init__(self):
+        self._root=None
+    def insert(self,data):
+        if self._root is None:
+            self._root=binarynode(data)
+        else:
+            self._insert(self._root,data)
+    def _insert(self,node,data) :
+        while not node is None:
+            innode=node
+            if data<node._data:
+                node=node._left
+            elif data>node._data:
+                node=node._right
+            else:
+                return
+        newnode=binarynode(data)
+        if data<innode._data:
+            innode._left=newnode;
+        else:
+            innode._right=newnode;
+    def printtree(self):
+        self._printtree(self._root)
+    def _printtree(self,node):
+        if node is not None:
+            self._printtree(node._left)
+            print(node._data)
+            self._printtree(node._right)
+if __name__=='__main__':
+    tree=binarysearchtree()
+    for num in (5,2,7,1,3,7,6,10,8):
+        tree.insert(num)
+    tree.printtree()
